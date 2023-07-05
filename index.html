@@ -1,107 +1,111 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Profile</title>
+  <title>Music Band Page</title>
   <style>
     body {
-      background-color: #f2f2f2;
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
     }
-
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      background-color: #ffffff;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    h1 {
+      text-align: center;
     }
-
-    .profile-picture {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background-color: #79c879;
-      margin-bottom: 20px;
-    }
-
-    .profile-details {
-      margin-left: 20px;
-    }
-
-    .profile-details h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: #333333;
-    }
-
-    .profile-details p {
-      margin: 0;
-      color: #666666;
-    }
-
-    .profile-details label {
-      font-weight: bold;
-      color: #333333;
-    }
-
-    .settings-form {
-      margin-top: 20px;
-    }
-
-    .settings-form label {
+    #band-image {
       display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
+      margin: 0 auto;
+      max-width: 300px;
     }
-
-    .settings-form input[type="password"],
-    .settings-form input[type="text"] {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #dddddd;
-      border-radius: 4px;
+    #albums {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
     }
-
-    .settings-form button {
-      background-color: #79c879;
-      color: #ffffff;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+    .album-item {
+      margin: 10px;
+    }
+    .album-image {
+      max-width: 200px;
+    }
+    .album-title {
+      text-align: center;
+    }
+    .album-reviews {
+      display: none;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+    }
+    .add-review {
+      margin-top: 10px;
     }
   </style>
+  <script>
+    function toggleReviews(albumId) {
+      var reviews = document.getElementById('reviews-' + albumId);
+      reviews.style.display = reviews.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
 </head>
 <body>
-  <div class="container">
-    <div class="profile-picture"></div>
-    <div class="profile-details">
-      <h2>User Profile</h2>
-      <p><label>Name:</label> Patr</p>
-      <p><label>Username:</label> pato</p>
-      <p><label>Email:</label> pat@example.com</p>
-      <p><label>Password:</label> ********</p>
-      <p><label>Bio:</label> User bio</p>
-    </div>
+  <h1>Music Band Name</h1>
+  <img id="band-image" src="band-image.jpg" alt="Band Image">
+  <p>Band Bio Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
-    <form class="settings-form">
-      <h2>Settings</h2>
-      <label>Change Password:</label>
-      <input type="password" placeholder="Enter new password" />
-      <input type="password" placeholder="Confirm new password" />
+  <h2>Albums</h2>
+  <ul id="albums">
+    <li class="album-item">
+      <img class="album-image" src="https://bloximages.newyork1.vip.townnews.com/theadvocate.com/content/tncms/assets/v3/editorial/7/a9/7a9cf6ee-abc2-11ed-80fd-33626cef3f4f/63ea7172ae4e1.image.jpg?crop=1763%2C992%2C0%2C91&resize=1763%2C992&order=crop%2Cresize" alt="Album 1">
+      <div class="album-title">Album 1</div>
+      <button onclick="toggleReviews(1)">Reviews</button>
+      <div id="reviews-1" class="album-reviews">
+        <!-- Reviews for Album 1 will be displayed here -->
+        <h3>Reviews for Album 1</h3>
+        <ul id="album1-reviews">
+          <!-- Individual review items will be added here dynamically -->
+        </ul>
+        <div class="add-review">
+          <h3>Add Your Review</h3>
+          <input type="text" id="review-input-1" placeholder="Your review">
+          <button onclick="addReview(1)">Add Review</button>
+        </div>
+      </div>
+    </li>
+    <li class="album-item">
+      <img class="album-image" src="https://static.standard.co.uk/2022/10/24/10/23232037-fe60a2d7-4b5f-4dd8-9802-f3a584c8c6d2.jpg?width=1024&auto=webp&quality=50&crop=968%3A645%2Csmart" alt="Album 2">
+      <div class="album-title">Album 2</div>
+      <button onclick="toggleReviews(2)">Reviews</button>
+      <div id="reviews-2" class="album-reviews">
+        <!-- Reviews for Album 2 will be displayed here -->
+        <h3>Reviews for Album 2</h3>
+        <ul id="album2-reviews">
+          <!-- Individual review items will be added here dynamically -->
+        </ul>
+        <div class="add-review">
+          <h3>Add Your Review</h3>
+          <input type="text" id="review-input-2" placeholder="Your review">
+          <button onclick="addReview(2)">Add Review</button>
+        </div>
+      </div>
+    </li>
+    <!-- Add more album items as needed -->
+  </ul>
 
-      <label>Location:</label>
-      <input type="text" placeholder="Enter your location" />
+  <!-- Additional content goes here -->
 
-      <label>Change Username:</label>
-      <input type="text" placeholder="Enter new username" />
+  <script>
+    function addReview(albumId) {
+      var input = document.getElementById('review-input-' + albumId);
+      var reviewText = input.value;
 
-      <button type="submit">Save Changes</button>
-    </form>
-  </div>
+      if (reviewText.trim() !== '') {
+        var reviewList = document.getElementById('album' + albumId + '-reviews');
+        var listItem = document.createElement('li');
+        listItem.innerText = reviewText;
+        reviewList.appendChild(listItem);
+        input.value = '';
+      }
+    }
+  </script>
 </body>
 </html>
